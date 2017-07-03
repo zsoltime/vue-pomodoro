@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vue.js Pomodoro by Zsolt Meszaros | Vue.js Challenge</title>
+  <meta name="description" content="Free Code Camp pomodoro timer using Vue.js">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="container">
+    <h1>Vue<span>modoro Timer</span></h1>
+    <div class="pomodoro">
+      <div class="pomodoro__status">{{ sessions }}: {{ title }}</div>
+      <div class="pomodoro__timer">
+        {{ min }}:{{ sec }}
+      </div>
+      <div class="pomodoro__controls">
+        <button
+          :disabled="timerState === 'started'"
+          aria-label="Start timer"
+          @click="start"
+        >Start</button>
+        <button
+          :disabled="timerState !== 'started'"
+          aria-label="Pause timer"
+          @click="pause"
+        >Pause</button>
+        <button
+          :disabled="timerState !== 'started' && timerState !== 'paused'" aria-label="Stop timer"
+          @click="stop"
+        >Stop</button>
+      </div>
+      <div class="pomodoro__settings">
+        <label for="work">Session length</label>
+        <input type="number" v-model="workingSeconds" id="work">
+        <hr>
+        <label for="break">Break length</label>
+        <input type="number" v-model="restingSeconds" id="break">
+        <hr>
+        <label for="sessions">Number of sessions</label>
+        <input type="number" v-model="maxSessions" if="sessions">
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
